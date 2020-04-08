@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -36,8 +36,34 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+if __name__ == "__main__":
 
 # Make a new player object that is currently in the 'outside' room.
+    player = Player("sam",room['outside'])
+    playing = True
+
+    while(playing):
+        print(f'{player.name} is in the {player.current_room.name}')
+        print(f'{player.current_room.description}')
+        user_input = input()
+        if(user_input == 'q'):
+            print('Are you sure you want to quit Game')
+            user_input = input()
+            if (user_input == 'y'):
+                playing = False
+                exit()
+            elif(user_input == 'n'):
+                pass
+        elif(user_input == 'n' and player.current_room.n_to != None):
+            player.current_room = player.current_room.n_to
+        elif(user_input == 'e' and player.current_room.e_to != None):
+            player.current_room = player.current_room.e_to
+        elif(user_input == 's' and player.current_room.s_to != None):
+            player.current_room = player.current_room.s_to
+        elif(user_input == 'w' and player.current_room.w_to != None):
+            player.current_room = player.current_room.w_to
+        else:
+            print('Movement is not allowed')
 
 # Write a loop that:
 #
