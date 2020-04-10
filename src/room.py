@@ -8,3 +8,17 @@ class Room():
         self.e_to = None
         self.s_to = None
         self.w_to = None
+        self.items = []
+        
+    def add_item(self, item):
+        self.items.append(item)
+    
+    def get_item(self, item):
+        for i in self.items:
+            if i.name == item:
+                return i
+    
+    def remove_item(self, item):
+        for e, i in enumerate(self.items):
+            if i.name == item:
+                self.items.remove(i)
